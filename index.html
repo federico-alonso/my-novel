@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Cosmic Horror · Web Novel</title>
-  <!-- Single stylesheet: minimal, dark-first, readable -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Clero de los Muertos · Friederich Calais</title>
   <style>
-    /* ----- RESET & BASE (dark mode by default) ----- */
+    /* Reset & base — clean, neutral, Royal Road–inspired */
     * {
       margin: 0;
       padding: 0;
@@ -14,464 +13,337 @@
     }
 
     body {
-      background: #0b0d10;
-      color: #d6dce5;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #fafaf8;
+      color: #1e1e1e;
+      font-family: 'Georgia', 'Times New Roman', serif;
       line-height: 1.7;
-      padding: 1.5rem 1rem;
-      max-width: 780px;
-      margin: 0 auto;
-      min-height: 100vh;
+      padding: 2rem 1rem;
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
-    /* subtle cosmic texture */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 20% 30%, rgba(40, 50, 70, 0.2) 0%, transparent 60%),
-                  radial-gradient(circle at 80% 70%, rgba(20, 30, 50, 0.3) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: -1;
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: transparent;
+      padding: 0 0.5rem;
     }
 
-    a {
-      color: #9bb9e6;
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    a:hover {
-      color: #c9ddf5;
-      text-decoration: underline;
+    /* --- homepage & chapter common --- */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1.5rem 0 2rem 0;
     }
 
-    h1, h2, h3 {
-      font-weight: 400;
-      letter-spacing: 0.02em;
+    .cover-image {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      aspect-ratio: 3/4;
+      background: #e5e3db;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4a4a4a;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 1.8rem;
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #e0ddd6;
+    }
+
+    .cover-image svg {
+      width: 60px;
+      height: 60px;
+      opacity: 0.3;
+      margin-right: 10px;
     }
 
     h1 {
-      font-size: 2.4rem;
-      margin-bottom: 0.5rem;
-      color: #eaeef5;
-      border-left: 4px solid #6d8eb0;
-      padding-left: 1rem;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      margin: 2rem 0 0.8rem 0;
-      color: #d0dbe8;
-      border-bottom: 1px solid #2a3340;
-      padding-bottom: 0.3rem;
-    }
-
-    .subhead {
-      color: #9aadc7;
-      font-size: 1rem;
-      margin-bottom: 1.8rem;
-      padding-left: 1.5rem;
-      border-left: 2px solid #3f5068;
-    }
-
-    /* ----- BUTTONS & NAV ----- */
-    .btn {
-      display: inline-block;
-      background: #1f2a36;
-      color: #d6dce5;
-      padding: 0.7rem 2rem;
-      border: 1px solid #3d5068;
-      border-radius: 40px;
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      transition: all 0.2s;
-      cursor: pointer;
-      text-decoration: none;
-      margin: 0.5rem 0.5rem 0.5rem 0;
-    }
-    .btn:hover {
-      background: #2f3d50;
-      border-color: #6d8eb0;
-      text-decoration: none;
-      color: #f0f4fc;
-    }
-    .btn-primary {
-      background: #3b506a;
-      border-color: #5a7a9a;
-      color: #f0f4fc;
-    }
-    .btn-primary:hover {
-      background: #4d6788;
-      border-color: #8bb0d4;
-    }
-
-    .chapter-nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.8rem;
-      margin: 2.5rem 0 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid #29323e;
-    }
-    .chapter-nav .btn {
-      margin: 0;
-      min-width: 110px;
+      font-size: 2.6rem;
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
       text-align: center;
+      margin: 0.2rem 0 0.1rem 0;
+      color: #1e1e1e;
     }
 
-    /* ----- CHAPTER LIST (index) ----- */
-    .chapter-list {
-      list-style: none;
-      margin: 1.5rem 0 2.5rem;
-      padding: 0;
-      border-left: 2px solid #2f3f52;
-    }
-    .chapter-list li {
-      padding: 0.5rem 0 0.5rem 1.5rem;
-      border-bottom: 1px solid #1f2732;
-      transition: background 0.1s;
-    }
-    .chapter-list li:hover {
-      background: #141b24;
-    }
-    .chapter-list a {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1.1rem;
-      color: #c4d2e3;
-    }
-    .chapter-list a:hover {
-      color: #eaf0fa;
-      text-decoration: none;
-    }
-    .chapter-list .chapter-num {
-      color: #7b93b3;
-      font-size: 0.9rem;
-      background: #1c2532;
-      padding: 0.1rem 0.8rem;
-      border-radius: 20px;
-    }
-
-    /* ----- CHAPTER CONTENT (reading) ----- */
-    .chapter-content {
-      font-size: 1.15rem;
-      line-height: 1.8;
-      color: #d0d9e5;
-      margin: 1.2rem 0 1.8rem;
-    }
-    .chapter-content p {
-      margin: 1.2rem 0;
-      text-indent: 0.2rem;
-    }
-    .chapter-content p:first-of-type {
-      margin-top: 0.5rem;
-    }
-
-    .chapter-title {
-      font-size: 2.2rem;
+    .author-name {
+      font-size: 1.2rem;
       font-weight: 300;
-      margin-bottom: 0.2rem;
-      color: #dce4ef;
-      border-left: 4px solid #5d7f9e;
-      padding-left: 1rem;
-    }
-
-    /* small meta */
-    .chapter-meta {
-      color: #7f93ae;
-      font-size: 0.9rem;
-      margin-bottom: 1.8rem;
-      padding-left: 1.5rem;
-    }
-
-    /* synopsis on index */
-    .synopsis {
-      background: #131b24;
-      padding: 1.2rem 1.8rem;
-      border-radius: 12px;
-      border-left: 4px solid #4d6a88;
-      margin: 1.5rem 0 2rem;
-      font-style: italic;
-      color: #c6d2e3;
-    }
-
-    /* ----- FOOTER / MISC ----- */
-    .footer-note {
-      margin-top: auto;
-      padding-top: 2rem;
-      font-size: 0.85rem;
-      color: #5c6f89;
+      color: #3a3a3a;
       text-align: center;
-      border-top: 1px solid #1f2732;
-    }
-
-    /* mobile-friendly tweaks */
-    @media (max-width: 540px) {
-      body { padding: 0.8rem; }
-      h1 { font-size: 1.8rem; padding-left: 0.8rem; }
-      .chapter-title { font-size: 1.7rem; }
-      .btn { padding: 0.5rem 1.2rem; font-size: 1rem; }
-      .chapter-nav .btn { min-width: 80px; }
-      .chapter-list a { font-size: 1rem; }
-    }
-
-    /* toggle for light mode – but we keep dark as default, 
-       we add a simple class to override if needed (auto dark) */
-    /* no explicit toggle needed – user can use OS preference, but we keep dark */
-    /* if you want a manual toggle, uncomment the JS at bottom */
-    /* but requirements: "Dark mode (toggle button or auto dark theme)" – we provide auto */
-    @media (prefers-color-scheme: light) {
-      body {
-        background: #f0f3f8;
-        color: #1e2630;
-      }
-      body::before { display: none; }
-      a { color: #2f5b8a; }
-      a:hover { color: #1a3f66; }
-      h1, .chapter-title { color: #1a2633; border-left-color: #6d8eb0; }
-      h2 { color: #26323f; border-bottom-color: #bcc9da; }
-      .subhead { color: #3f5775; border-left-color: #7b97b9; }
-      .btn { background: #d6dfe9; color: #1e2835; border-color: #a6bbd1; }
-      .btn-primary { background: #b6cbe2; border-color: #7f9bbd; color: #0d1a2b; }
-      .btn-primary:hover { background: #9bb6d4; }
-      .btn:hover { background: #c2d3e6; border-color: #6d8eb0; }
-      .chapter-list li { border-bottom-color: #cedbe9; }
-      .chapter-list li:hover { background: #e5edf5; }
-      .chapter-list .chapter-num { background: #d5e1ef; color: #2d4b6e; }
-      .synopsis { background: #e3ebf3; border-left-color: #6d8eb0; color: #1d2f41; }
-      .chapter-content { color: #1e2a3a; }
-      .chapter-meta { color: #4a6280; }
-      .footer-note { color: #6b7f9a; border-top-color: #c6d4e3; }
-      .chapter-nav { border-top-color: #c6d4e3; }
-    }
-
-    /* simple "dark toggle" (manual) – hidden by default, but we add a tiny toggle in footer */
-    .dark-toggle-label {
-      cursor: pointer;
-      background: #1f2835;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      border: 1px solid #3d5068;
-      color: #b8c9dd;
+      margin-top: 0.2rem;
+      border-bottom: 1px solid #dedcd5;
+      padding-bottom: 0.5rem;
       display: inline-block;
-      margin-top: 1rem;
-      user-select: none;
     }
-    @media (prefers-color-scheme: light) {
-      .dark-toggle-label {
-        background: #d5dfea;
-        color: #1f2b3b;
-        border-color: #8aa3bf;
-      }
+
+    .tagline {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #3f3f3f;
+      text-align: center;
+      margin: 0.5rem 0 0.2rem 0;
+      background: #f2f0eb;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      display: inline-block;
     }
-    /* manual toggle - we use a checkbox hack */
-    #dark-mode-toggle {
-      display: none;
+
+    .bio {
+      font-size: 0.95rem;
+      color: #3d3d3d;
+      background: #f4f2ec;
+      padding: 1.2rem 1.5rem;
+      border-radius: 20px;
+      margin: 1.5rem 0 2rem 0;
+      line-height: 1.6;
+      border: 1px solid #e2dfd7;
     }
-    /* if checkbox is checked -> force dark */
-    #dark-mode-toggle:checked ~ body {
-      background: #0b0d10 !important;
-      color: #d6dce5 !important;
+
+    .chapter-index {
+      margin: 2rem 0 3rem 0;
+      list-style: none;
+      padding: 0;
     }
-    #dark-mode-toggle:checked ~ body a {
-      color: #9bb9e6 !important;
-    }
-    #dark-mode-toggle:checked ~ body h1,
-    #dark-mode-toggle:checked ~ body .chapter-title {
-      color: #eaeef5 !important;
-      border-left-color: #6d8eb0 !important;
-    }
-    #dark-mode-toggle:checked ~ body .btn {
-      background: #1f2a36 !important;
-      color: #d6dce5 !important;
-      border-color: #3d5068 !important;
-    }
-    #dark-mode-toggle:checked ~ body .btn-primary {
-      background: #3b506a !important;
-      border-color: #5a7a9a !important;
-      color: #f0f4fc !important;
-    }
-    #dark-mode-toggle:checked ~ body .synopsis {
-      background: #131b24 !important;
-      color: #c6d2e3 !important;
-      border-left-color: #4d6a88 !important;
-    }
-    #dark-mode-toggle:checked ~ body .chapter-content {
-      color: #d0d9e5 !important;
-    }
-    #dark-mode-toggle:checked ~ body .chapter-list li {
-      border-bottom-color: #1f2732 !important;
-    }
-    #dark-mode-toggle:checked ~ body .chapter-list li:hover {
-      background: #141b24 !important;
-    }
-    #dark-mode-toggle:checked ~ body .footer-note {
-      color: #5c6f89 !important;
-      border-top-color: #1f2732 !important;
-    }
-    #dark-mode-toggle:checked ~ body .chapter-nav {
-      border-top-color: #29323e !important;
-    }
-    /* hide toggle label if not needed? we show it */
-    .toggle-wrap {
+
+    .chapter-index li {
+      border-bottom: 1px solid #e2ded6;
+      padding: 0.7rem 0;
       display: flex;
-      justify-content: flex-end;
-      margin-top: 0.5rem;
+      align-items: baseline;
+      gap: 0.8rem;
+    }
+
+    .chapter-index li:last-child {
+      border-bottom: none;
+    }
+
+    .chapter-index .num {
+      color: #6f6b62;
+      font-size: 0.85rem;
+      min-width: 2.5rem;
+      font-feature-settings: "tnum";
+    }
+
+    .chapter-index a {
+      color: #1e1e1e;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.1s;
+      border-bottom: 1px dotted transparent;
+    }
+
+    .chapter-index a:hover {
+      color: #5a4e3e;
+      border-bottom: 1px dotted #b0a99a;
+    }
+
+    /* --- chapter page styles --- */
+    .chapter-title {
+      font-size: 2rem;
+      font-weight: 400;
+      margin: 0.8rem 0 0.2rem 0;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    .chapter-meta {
+      font-size: 0.9rem;
+      color: #5e5a52;
+      border-bottom: 1px solid #e0dcd3;
+      padding-bottom: 1rem;
+      margin-bottom: 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .chapter-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #1e1e1e;
+    }
+
+    .chapter-body p {
+      margin-bottom: 1.4rem;
+      text-indent: 0;
+    }
+
+    .chapter-body p:first-of-type {
+      margin-top: 0;
+    }
+
+    /* navigation */
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 3rem 0 2rem 0;
+      border-top: 1px solid #e0dcd3;
+      padding-top: 1.8rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .nav-links a {
+      color: #1e1e1e;
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      background: #f2f0ea;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      border: 1px solid #dcd8cf;
+      transition: background 0.1s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a:hover {
+      background: #e5e1d7;
+      border-color: #c2bdb0;
+    }
+
+    .nav-links .disabled {
+      opacity: 0.4;
+      pointer-events: none;
+      background: transparent;
+      border: 1px solid #ddd8cf;
+      color: #888;
+    }
+
+    .back-home {
+      margin: 1rem 0 2rem 0;
+      display: block;
+      text-align: center;
+    }
+
+    .back-home a {
+      color: #4a453c;
+      text-decoration: none;
+      border-bottom: 1px dotted #b8b1a4;
+      font-size: 0.95rem;
+    }
+
+    .back-home a:hover {
+      color: #1f1b15;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 2rem; }
+      .chapter-title { font-size: 1.7rem; }
+      .cover-image { max-width: 100%; }
+      .nav-links { flex-direction: row; justify-content: space-between; }
+      .nav-links a { font-size: 0.9rem; padding: 0.3rem 0.8rem; }
+    }
+
+    /* utility */
+    .muted {
+      color: #6a665c;
+      font-size: 0.9rem;
+    }
+    .center {
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <!-- hidden checkbox for manual dark toggle (optional) -->
-  <input type="checkbox" id="dark-mode-toggle">
-
-  <!-- ========== CONTENT ========== -->
-  <!-- we use a wrapper to apply checkbox hack, but we can also just use body -->
-  <!-- since checkbox is sibling, we use general sibling selector ~ body, but body is after? -->
-  <!-- we move checkbox inside a wrapper? better: use label + body -->
-  <!-- actually we put checkbox before body, but in html body is after, so we use ~ body works if checkbox is before body? -->
-  <!-- but body is the parent, we can't. let's use a container div -->
-  <div style="display: contents;"> <!-- keep semantics -->
-    <!-- we'll use a wrapper for the whole page to apply dark toggle -->
-    <div class="page-wrapper">
-      <!-- manual toggle label (hidden by default, but we show it) -->
-      <div class="toggle-wrap">
-        <label for="dark-mode-toggle" class="dark-toggle-label">☾ dark mode (toggle)</label>
+  <div class="container">
+    <!-- HOME PAGE CONTENT (visible only on index.html) -->
+    <div id="home-content">
+      <div class="cover">
+        <div class="cover-image">
+          <span style="display: flex; flex-direction: column; align-items: center;">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#5a5348" stroke-width="0.6">
+              <path d="M4 20L20 4M4 4L20 20" stroke="#8a8274" stroke-width="1.2"/>
+              <circle cx="12" cy="12" r="9" stroke="#8a8274" stroke-width="1.2"/>
+            </svg>
+            <span style="margin-top: 0.5rem; font-size: 0.9rem; letter-spacing: 3px;">EL CLERO</span>
+          </span>
+        </div>
+        <h1>El Clero de los Muertos</h1>
+        <div style="text-align: center;">
+          <span class="author-name">Friederich Calais</span>
+        </div>
+        <div class="tagline">Dios no entiende de moral.</div>
       </div>
 
-      <!-- ====== INDEX.HTML content ====== -->
-      <!-- we use a partial approach: but we have one file for all? we need multiple files. 
-           we will generate index.html and chapter-xxx.html. but since we have a single file output,
-           we'll create two variants: but the user wants multiple files. we'll provide code for 
-           index.html and chapter template. but the code below is for index.html -->
-      <!-- we'll build the index page here, and also show chapter template -->
-      <!-- For simplicity, we create a single HTML that acts as index, and we show chapter template separately -->
-      <!-- but the request: "Full folder structure, Complete code for all files" - we provide index.html and chapter-001.html etc -->
-      <!-- but in this single answer we can't output multiple files. So we produce the code for index.html and 
-           the chapter template, and explain the structure. Also we include a sample chapter. -->
-
-      <!-- ========== INDEX PAGE ========== -->
-      <header>
-        <h1>THE WHISPER IN THE VOID</h1>
-        <div class="subhead">a cosmic horror web novel</div>
-      </header>
-
-      <div class="synopsis">
-        <strong>✦ synopsis</strong><br>
-        In the desolate observatory at the edge of the world, Dr. Helena Voss picks up a signal 
-        that shouldn't exist — a whisper from a dead star. As she peers deeper into the abyss, 
-        reality begins to fray, and the void whispers back. What she finds will shatter the 
-        boundaries of time, space, and self.
+      <div class="bio">
+        <strong>Friederich Calais</strong> escribe sobre dioses que no entienden de moral, criaturas que se esconden en el flujo de la casualidad, y la clase de horror que solo se nota cuando ya es demasiado tarde para mirar hacia otro lado.
       </div>
 
-      <!-- start reading -->
-      <div style="margin: 1.8rem 0 1.2rem;">
-        <a href="chapter-001.html" class="btn btn-primary">⟡ Start reading</a>
-      </div>
-
-      <!-- chapter list -->
-      <h2>All chapters</h2>
-      <ul class="chapter-list">
-        <li><a href="chapter-001.html"><span>Chapter 1 · The Signal</span> <span class="chapter-num">001</span></a></li>
-        <li><a href="chapter-002.html"><span>Chapter 2 · The Fracture</span> <span class="chapter-num">002</span></a></li>
-        <li><a href="chapter-003.html"><span>Chapter 3 · Echoes</span> <span class="chapter-num">003</span></a></li>
-        <!-- add more chapters here -->
+      <!-- CHAPTER INDEX -->
+      <h2 style="font-weight: 400; font-size: 1.4rem; margin: 1.8rem 0 0.8rem 0; letter-spacing: -0.3px; border-bottom: 1px solid #ddd9d0; padding-bottom: 0.4rem;">Capítulos</h2>
+      <ul class="chapter-index" id="chapter-list">
+        <!-- will be populated by script or static fallback -->
+        <li><span class="num">01</span><a href="capitulo-1.html">Prólogo: El peso de la fe</a></li>
+        <li><span class="num">02</span><a href="capitulo-2.html">El primer milagro</a></li>
+        <li><span class="num">03</span><a href="capitulo-3.html">Criaturas en el flujo</a></li>
+        <li><span class="num">04</span><a href="capitulo-4.html">La misa de los olvidados</a></li>
       </ul>
-
-      <footer class="footer-note">
-        <span>cosmic horror · read in the dark</span>
-        <br>
-        <span style="font-size:0.75rem;">— no frameworks, just static —</span>
-      </footer>
+      <div style="margin: 1.2rem 0 2rem 0; font-size: 0.9rem; color: #5f5b52; border-top: 1px solid #e3dfd6; padding-top: 1rem;">
+        <span>— actualizado · 4 capítulos —</span>
+      </div>
     </div>
+
+    <!-- CHAPTER PAGE PLACEHOLDER (hidden by default) 
+         each chapter file will have its own content, but we keep 
+         the template structure in the same file for reference -->
   </div>
 
-  <!-- because we cannot have multiple files in one output, we also provide the chapter template as a comment -->
-  <!-- ========================================================== -->
+  <!-- small script to keep index dynamic (optional, but pure static works) -->
+  <script>
+    (function() {
+      // this script just ensures the home page shows the index.
+      // On chapter pages, we hide the home content and show chapter content.
+      // but since we generate separate HTML, it's fine.
+      // however we keep it for the home page to show the list.
+      // nothing else needed.
+    })();
+  </script>
   <!-- 
-    TEMPLATE for chapter-001.html, chapter-002.html etc.
-    Copy the code below and replace content.
-
-    ====== chapter-XXX.html ======
+    --- CHAPTER TEMPLATE (copy-paste into new .html file) ---
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="es">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Chapter 1 · The Signal · Cosmic Horror</title>
-      <style> [copy the style from above] </style>
+      <title>Capítulo X · El Clero de los Muertos</title>
+      <link rel="stylesheet" href="style.css">  // or inline styles (copy from above)
     </head>
     <body>
-      <input type="checkbox" id="dark-mode-toggle">
-      <div class="page-wrapper">
-        <div class="toggle-wrap">
-          <label for="dark-mode-toggle" class="dark-toggle-label">☾ dark mode (toggle)</label>
+      <div class="container">
+        <div class="chapter-title">Capítulo X: Título del capítulo</div>
+        <div class="chapter-meta">
+          <span>Capítulo X</span>
+          <span class="muted">Friederich Calais</span>
         </div>
-
-        <!-- navigation: previous / next -->
-        <div class="chapter-nav">
-          <a href="index.html" class="btn">⌂ index</a>
-          <span style="flex:1; text-align:center; color:#6f86a0;">Chapter 1</span>
-          <a href="chapter-002.html" class="btn btn-primary">next →</a>
+        <div class="chapter-body">
+          <p>Texto del capítulo…</p>
+          <p>Más párrafos…</p>
         </div>
-
-        <h1 class="chapter-title">The Signal</h1>
-        <div class="chapter-meta">Chapter 1 · 12 min read</div>
-
-        <div class="chapter-content">
-          <p>The radio telescope had been silent for seventy-three days. Dr. Helena Voss had grown accustomed to the static — it was the only companion in the high-altitude observatory. But tonight, the static changed.</p>
-          <p>A low, rhythmic pulse emerged from the noise. It wasn’t random. It wasn’t natural. It repeated every 4.7 seconds, like a heartbeat from the edge of the galaxy.</p>
-          <p>“That’s impossible,” she whispered, her breath fogging the cold glass of the spectrograph. The signal was coming from a region of space that had been dead for billions of years — a supernova remnant, the ghost of a star.</p>
-          <p>She adjusted the gain. The pulse grew louder, and with it came a sensation she couldn’t name — a pressure behind her eyes, a taste of iron in her mouth. The whisper.</p>
-          <p>And then the whisper spoke.</p>
+        <div class="nav-links">
+          <a href="capitulo-anterior.html">← Anterior</a>
+          <a href="index.html">Índice</a>
+          <a href="capitulo-siguiente.html">Siguiente →</a>
         </div>
-
-        <!-- navigation -->
-        <div class="chapter-nav">
-          <a href="index.html" class="btn">⌂ index</a>
-          <a href="chapter-002.html" class="btn btn-primary">next →</a>
-        </div>
-
-        <footer class="footer-note">
-          <span>cosmic horror · chapter 1</span>
-        </footer>
+        <div class="back-home"><a href="index.html">← Volver al índice</a></div>
       </div>
     </body>
     </html>
   -->
-  <!-- ========================================================== -->
-
-  <!-- we also include a sample chapter-001.html in the answer as a separate file, 
-       but we can't output multiple files. we show the template above. 
-       we also add a small script to handle the dark mode toggle (checkbox hack) 
-       but it's already css only. -->
-  <script>
-    // small helper to keep the dark toggle state if needed (just for UX)
-    (function() {
-      const toggle = document.getElementById('dark-mode-toggle');
-      if (toggle) {
-        // if user prefers dark, set checkbox to true? but we want auto dark by default.
-        // we store preference in localStorage if they toggle manually.
-        const stored = localStorage.getItem('dark-mode');
-        if (stored !== null) {
-          toggle.checked = stored === 'true';
-        } else {
-          // if system prefers light, we keep checkbox unchecked, but our default is dark.
-          // but the css uses @media prefers-color-scheme. we want manual override.
-          // we set checkbox to false initially.
-          toggle.checked = false;
-        }
-        toggle.addEventListener('change', function() {
-          localStorage.setItem('dark-mode', this.checked);
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
